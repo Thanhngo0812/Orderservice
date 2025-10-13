@@ -1,5 +1,5 @@
 package com.ct08SWA.orderservice.orderdomaincore.entity;
-import java.math.BigDecimal;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -12,7 +12,6 @@ import com.ct08SWA.orderservice.orderdomaincore.valueobject.RestaurantId;
 import com.ct08SWA.orderservice.orderdomaincore.valueobject.StreetAddress;
 import com.ct08SWA.orderservice.orderdomaincore.valueobject.TrackingId;
 
-import java.util.List;
 
 public class Order extends AggregateRoot<OrderId> {
     private final CustomerId customerId;
