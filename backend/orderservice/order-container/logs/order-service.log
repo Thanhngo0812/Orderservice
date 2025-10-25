@@ -1,0 +1,45 @@
+2025-10-19T22:05:38.184+07:00  INFO 23084 --- [orderservice] [restartedMain] c.c.o.o.c.OrderserviceApplication        : Starting OrderserviceApplication using Java 21.0.7 with PID 23084 (C:\Users\ADMIN\Desktop\kientruc\New folder\Orderservice\backend\orderservice\order-container\target\classes started by ADMIN in C:\Users\ADMIN\Desktop\kientruc\New folder\Orderservice\backend\orderservice\order-container)
+2025-10-19T22:05:38.184+07:00  INFO 23084 --- [orderservice] [restartedMain] c.c.o.o.c.OrderserviceApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-10-19T22:05:38.771+07:00  INFO 23084 --- [orderservice] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-19T22:05:38.821+07:00  INFO 23084 --- [orderservice] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 47 ms. Found 1 JPA repository interface.
+2025-10-19T22:05:39.400+07:00  INFO 23084 --- [orderservice] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8888 (http)
+2025-10-19T22:05:39.401+07:00  INFO 23084 --- [orderservice] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-10-19T22:05:39.402+07:00  INFO 23084 --- [orderservice] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.46]
+2025-10-19T22:05:39.436+07:00  INFO 23084 --- [orderservice] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-10-19T22:05:39.436+07:00  INFO 23084 --- [orderservice] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1245 ms
+2025-10-19T22:05:39.504+07:00  INFO 23084 --- [orderservice] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-10-19T22:05:39.515+07:00  INFO 23084 --- [orderservice] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-10-19T22:05:39.544+07:00  INFO 23084 --- [orderservice] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-19T22:05:39.547+07:00  INFO 23084 --- [orderservice] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2025-10-19T22:05:39.617+07:00  INFO 23084 --- [orderservice] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection org.postgresql.jdbc.PgConnection@470b061a
+2025-10-19T22:05:39.617+07:00  INFO 23084 --- [orderservice] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2025-10-19T22:05:39.636+07:00  WARN 23084 --- [orderservice] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-10-19T22:05:39.640+07:00  INFO 23084 --- [orderservice] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-2)']
+	Database driver: undefined/unknown
+	Database version: 14.19
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-10-19T22:05:39.818+07:00  INFO 23084 --- [orderservice] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-10-19T22:05:40.053+07:00  INFO 23084 --- [orderservice] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-19T22:05:40.303+07:00  WARN 23084 --- [orderservice] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-10-19T22:05:40.546+07:00  INFO 23084 --- [orderservice] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-10-19T22:05:40.564+07:00  INFO 23084 --- [orderservice] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8888 (http) with context path '/'
+2025-10-19T22:05:40.577+07:00  INFO 23084 --- [orderservice] [restartedMain] c.c.o.o.c.OrderserviceApplication        : Started OrderserviceApplication in 2.493 seconds (process running for 1381.704)
+2025-10-19T22:05:40.584+07:00  INFO 23084 --- [orderservice] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-10-19T22:05:45.384+07:00  INFO 23084 --- [orderservice] [http-nio-8888-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-10-19T22:05:45.385+07:00  INFO 23084 --- [orderservice] [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-10-19T22:05:45.385+07:00  INFO 23084 --- [orderservice] [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-10-19T22:05:45.435+07:00  INFO 23084 --- [orderservice] [http-nio-8888-exec-1] c.c.o.o.rest.OrderController             : Creating order for customer: d215b5f8-0249-4dc5-89a3-51fd148cfb41 at restaurant: d215b5f8-0249-4dc5-89a3-51fd148cfb45
+2025-10-19T22:05:45.436+07:00  INFO 23084 --- [orderservice] [http-nio-8888-exec-1] c.c.o.o.h.OrderApplicationServiceImpl    : Received create order command for customer: d215b5f8-0249-4dc5-89a3-51fd148cfb41 and restaurant: d215b5f8-0249-4dc5-89a3-51fd148cfb45
+2025-10-19T22:05:45.499+07:00  INFO 23084 --- [orderservice] [http-nio-8888-exec-1] c.c.o.o.handler.OrderCreateHelper        : Order is saved with id: 55b4f9d4-bf53-4912-b2ad-140a1590dab3
+2025-10-19T22:05:45.517+07:00  INFO 23084 --- [orderservice] [http-nio-8888-exec-1] c.c.o.o.h.OrderCreateCommandHandler      : Order is created with id: 55b4f9d4-bf53-4912-b2ad-140a1590dab3
+2025-10-19T22:05:45.518+07:00  INFO 23084 --- [orderservice] [http-nio-8888-exec-1] c.c.o.o.rest.OrderController             : Order created with tracking id: 09d7b385-7e3c-4c6d-9604-80f6745bba50
+2025-10-19T22:07:22.324+07:00  INFO 23084 --- [orderservice] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-10-19T22:07:22.327+07:00  INFO 23084 --- [orderservice] [Thread-7] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-19T22:07:22.333+07:00  INFO 23084 --- [orderservice] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-10-19T22:07:22.335+07:00  INFO 23084 --- [orderservice] [Thread-7] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-10-19T22:07:22.336+07:00  INFO 23084 --- [orderservice] [Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2025-10-19T22:07:22.340+07:00  INFO 23084 --- [orderservice] [Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
