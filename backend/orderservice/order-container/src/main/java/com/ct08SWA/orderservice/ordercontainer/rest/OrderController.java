@@ -9,11 +9,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ct08SWA.orderservice.orderapplicationservice.dto.inputdto.CreateOrderCommand;
+import com.ct08SWA.orderservice.orderapplicationservice.dto.inputdto.UpdateOrderCommand;
 import com.ct08SWA.orderservice.orderapplicationservice.dto.ouputdto.OrderCreatedResponse;
+import com.ct08SWA.orderservice.orderapplicationservice.dto.ouputdto.UpdateOrderResponse;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import com.ct08SWA.orderservice.orderapplicationservice.ports.inputports.OrderApplicationService;
@@ -47,6 +51,20 @@ public class OrderController {
 	return ResponseEntity
 	.status(HttpStatus.CREATED)
 	.body(response);
+	}
+
+	// update order items when PENDING
+	@PutMapping("/{orderId}")
+	public ResponseEntity<UpdateOrderResponse> updateOrder(
+		@PathVariable java.util.UUID orderId,
+		@Valid @RequestBody UpdateOrderCommand updateOrderCommand) {
+		if (!orderId.equals(updateOrderCommand.orderId())) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+					.body(new UpdateOrderResponse(null, null, "Path orderId does not match body orderId"));
+		}
+		log.info("Updating order: {}", orderId);
+		UpdateOrderResponse response = orderApplicationService.updateOrder(updateOrderCommand);
+		return ResponseEntity.ok(response);
 	}
 	}
 

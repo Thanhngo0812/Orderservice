@@ -32,8 +32,8 @@ public class OrderRepositoryImpl implements OrderRepository {
 
 	@Override
 	public Optional<Order> findById(OrderId orderId) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
+		return orderJpaRepository.findById(orderId.getValue())
+				.map(orderDataAccessMapper::orderEntityToOrder);
 	}
 
 	@Override

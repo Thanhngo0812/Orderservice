@@ -119,6 +119,45 @@ public class Order extends AggregateRoot<OrderId> {
         }
     }
 
+    /**
+     * Update order items when order is in PENDING state.
+     * Returns a new Order instance with recalculated price and items initialized.
+     */
+    public Order updateOrderItems(List<OrderItem> newItems) {
+        if (orderStatus != OrderStatus.PENDING) {
+            throw new OrderDomainException("Order is not in correct state for update operation!");
+        }
+
+        // Recalculate total from provided items' subTotals and validate each item
+        Money newTotal = newItems.stream()
+                .map(orderItem -> {
+                    validateItemPrice(orderItem);
+                    return orderItem.getSubTotal();
+                })
+                .reduce(Money.ZERO, Money::add);
+
+        // Build a new Order snapshot with updated items and price
+        Order updated = Order.builder()
+                .orderId(super.getId())
+                .customerId(this.customerId)
+                .restaurantId(this.restaurantId)
+                .deliveryAddress(this.deliveryAddress)
+                .price(newTotal)
+                .items(newItems)
+                .trackingId(this.trackingId)
+                .orderStatus(this.orderStatus)
+                .failureMessages(this.failureMessages)
+                .build();
+
+        // Re-initialize items with current orderId and sequential item ids
+        updated.initializeOrderItems();
+
+        // Validate updated order totals
+        updated.validateOrder();
+
+        return updated;
+    }
+
     // Constructor, getters, builder...
     private Order(Builder builder) {
         super.setId(builder.orderId);

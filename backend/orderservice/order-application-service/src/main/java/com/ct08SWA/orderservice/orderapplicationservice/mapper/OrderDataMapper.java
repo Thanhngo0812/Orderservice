@@ -7,6 +7,8 @@ import org.springframework.stereotype.Component;
 
 import com.ct08SWA.orderservice.orderapplicationservice.dto.inputdto.CreateOrderCommand;
 import com.ct08SWA.orderservice.orderapplicationservice.dto.ouputdto.OrderCreatedResponse;
+import com.ct08SWA.orderservice.orderapplicationservice.dto.inputdto.UpdateOrderCommand;
+import com.ct08SWA.orderservice.orderapplicationservice.dto.ouputdto.UpdateOrderResponse;
 import com.ct08SWA.orderservice.orderdomaincore.entity.Order;
 import com.ct08SWA.orderservice.orderdomaincore.entity.OrderItem;
 import com.ct08SWA.orderservice.orderdomaincore.entity.Product;
@@ -33,6 +35,25 @@ public class OrderDataMapper {
         return new OrderCreatedResponse(
             order.getTrackingId().getValue(),
             order.getOrderStatus()
+        );
+    }
+
+    public List<OrderItem> updateCommandItemsToOrderItems(List<UpdateOrderCommand.OrderItemData> items) {
+        return items.stream()
+                .map(item -> OrderItem.builder()
+                        .product(new Product(new ProductId(item.productId()), null, new Money(item.price())))
+                        .price(new Money(item.price()))
+                        .quantity(item.quantity())
+                        .subTotal(new Money(item.subTotal()))
+                        .build())
+                .toList();
+    }
+
+    public UpdateOrderResponse orderToUpdateOrderResponse(Order order) {
+        return new UpdateOrderResponse(
+                order.getId().getValue(),
+                order.getOrderStatus(),
+                "Order updated successfully"
         );
     }
     private StreetAddress orderAddressToStreetAddress(CreateOrderCommand.OrderAddress address) {
