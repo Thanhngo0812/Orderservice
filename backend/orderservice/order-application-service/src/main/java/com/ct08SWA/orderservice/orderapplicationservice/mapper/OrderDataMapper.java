@@ -3,6 +3,7 @@ package com.ct08SWA.orderservice.orderapplicationservice.mapper;
 
 import java.util.List;
 
+import com.ct08SWA.orderservice.orderapplicationservice.dto.ouputdto.UpdateOrderStatusResponse;
 import org.springframework.stereotype.Component;
 
 import com.ct08SWA.orderservice.orderapplicationservice.dto.inputdto.CreateOrderCommand;
@@ -81,4 +82,13 @@ public class OrderDataMapper {
                 )
                 .toList();
     }
+
+    public UpdateOrderStatusResponse orderToUpdateOrderStatusResponse(Order order) {
+        return new UpdateOrderStatusResponse(
+                order.getId().getValue(),
+                order.getOrderStatus(),
+                "Order status updated successfully"
+        );
+    }
+
 }

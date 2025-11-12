@@ -1,7 +1,6 @@
 package com.ct08SWA.orderservice.orderdomaincore.entity;
 
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 import com.ct08SWA.orderservice.orderdomaincore.exception.OrderDomainException;
 import com.ct08SWA.orderservice.orderdomaincore.valueobject.CustomerId;
@@ -23,12 +22,32 @@ public class Order extends AggregateRoot<OrderId> {
     private TrackingId trackingId;
     private OrderStatus orderStatus;
     private List<String> failureMessages;
+    private static final EnumMap<OrderStatus, Set<OrderStatus>> VALID_TRANSITIONS = new EnumMap<>(OrderStatus.class);
 
+    static {
+        VALID_TRANSITIONS.put(OrderStatus.PENDING, EnumSet.of(OrderStatus.APPROVED, OrderStatus.CANCELLED));
+        VALID_TRANSITIONS.put(OrderStatus.APPROVED, EnumSet.of(OrderStatus.PAID));
+        VALID_TRANSITIONS.put(OrderStatus.PAID, EnumSet.of(OrderStatus.CANCELLING));
+        VALID_TRANSITIONS.put(OrderStatus.CANCELLING, EnumSet.of(OrderStatus.CANCELLED));
+        VALID_TRANSITIONS.put(OrderStatus.CANCELLED, EnumSet.noneOf(OrderStatus.class));
+    }
     public void initializeOrder() {
         setId(new OrderId(UUID.randomUUID()));
         trackingId = new TrackingId(UUID.randomUUID());
         orderStatus = OrderStatus.PENDING;
         initializeOrderItems();
+    }
+
+    public void updateStatus(OrderStatus newStatus) {
+        Set<OrderStatus> allowed = VALID_TRANSITIONS.getOrDefault(this.orderStatus, EnumSet.noneOf(OrderStatus.class));
+
+        if (!allowed.contains(newStatus)) {
+            throw new IllegalStateException(
+                    String.format("Invalid transition: %s → %s", this.orderStatus, newStatus)
+            );
+        }
+
+        this.orderStatus = newStatus;
     }
 
     public void validateOrder() {

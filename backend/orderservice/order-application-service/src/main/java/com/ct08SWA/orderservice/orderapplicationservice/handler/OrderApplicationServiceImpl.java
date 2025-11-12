@@ -1,5 +1,7 @@
 package com.ct08SWA.orderservice.orderapplicationservice.handler;
 
+import com.ct08SWA.orderservice.orderapplicationservice.dto.inputdto.UpdateOrderStatusCommand;
+import com.ct08SWA.orderservice.orderapplicationservice.dto.ouputdto.UpdateOrderStatusResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -19,11 +21,14 @@ public class OrderApplicationServiceImpl implements OrderApplicationService {
 
     private final OrderCreateCommandHandler orderCreateCommandHandler;
     private final OrderUpdateCommandHandler orderUpdateCommandHandler;
+    private final OrderStatusUpdateHandler orderStatusUpdateHandler;
 
     public OrderApplicationServiceImpl(OrderCreateCommandHandler orderCreateCommandHandler,
-                                       OrderUpdateCommandHandler orderUpdateCommandHandler) {
+                                       OrderUpdateCommandHandler orderUpdateCommandHandler,
+                                       OrderStatusUpdateHandler orderStatusUpdateHandler) {
         this.orderCreateCommandHandler = orderCreateCommandHandler;
         this.orderUpdateCommandHandler = orderUpdateCommandHandler;
+        this.orderStatusUpdateHandler = orderStatusUpdateHandler;
     }
 
     @Override
@@ -37,5 +42,11 @@ public class OrderApplicationServiceImpl implements OrderApplicationService {
     public UpdateOrderResponse updateOrder(UpdateOrderCommand updateOrderCommand) {
         log.info("Received update order command for order: {}", updateOrderCommand.orderId());
         return orderUpdateCommandHandler.updateOrder(updateOrderCommand);
+    }
+
+    @Override
+    public UpdateOrderStatusResponse updateOrderStatus(UpdateOrderStatusCommand updateOrderStatusCommand) {
+        log.info("Received update order status command for order: {}", updateOrderStatusCommand.orderId());
+        return orderStatusUpdateHandler.updateOrderStatus(updateOrderStatusCommand);
     }
 }
